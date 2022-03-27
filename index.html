@@ -20,6 +20,7 @@
       var cw = 10;
       var food;
       var snake;
+      var direction;
 
       ctx.strokeStyle = "black";
       ctx.strokeRect(0, 0, w, h);
@@ -30,6 +31,8 @@
         // Create a food object
         create_food();
         // Start the game
+        direction = "right"; // Initial direction
+        windows.onkeydown = keyEvent; // Start listening for key presses
         if (typeof game_loop != "undefined") clearInterval(game_loop);
         game_loop = setInterval(paint, 80);
       }
@@ -62,10 +65,16 @@
         var hx = snake[0].x;
         var hy = snake[0].y;
 
+        if (direction == "right") hx++;
+        else if (direction == "left") hx--;
+        else if (direction == "up") hy--;
+        else if (direction == "down") hy++;
+
         hx++;
 
         if (hx == w / cw || hx == -1 || hy == -1 || hy == h /cw){
           init();
+          return;
         }
 
         snake.pop();
@@ -86,6 +95,14 @@
         ctx.fillRect(x*cw, y*cw, cw, cw);
         ctx.strokeStyle = "white";
         ctx.strokeRect(x*cw, y*cw, cw, cw);
+      }
+
+      function keyEvent(e) {
+        var key = e.which;
+        if (key == "37" && d != "right") d = "left";
+        else if (key == "38" && d != "down") d = "up";
+        else if (key == "39" && d != "left") d = "right";
+        else if (key == "40" && d != "up") d = "down";
       }
     </script>
   </body>
