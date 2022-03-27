@@ -77,7 +77,13 @@
           return;
         }
 
-        snake.pop();
+        if (hx == food.x && hy = food.y) {
+          create_food();
+        }
+        else {
+          snake.pop();
+        }
+
         var new_head = {
           x: hx,
           y: hy
@@ -99,10 +105,10 @@
 
       function keyEvent(e) {
         var key = e.which;
-        if (key == "37" && d != "right") d = "left";
-        else if (key == "38" && d != "down") d = "up";
-        else if (key == "39" && d != "left") d = "right";
-        else if (key == "40" && d != "up") d = "down";
+        if (key == "37" && direction != "right") direction = "left";
+        else if (key == "38" && direction != "down") direction = "up";
+        else if (key == "39" && direction != "left") direction = "right";
+        else if (key == "40" && direction != "up") direction = "down";
       }
     </script>
   </body>
