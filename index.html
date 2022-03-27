@@ -58,6 +58,18 @@
         ctx.fillRect(0, 0, w, h);
         ctx.strokeStyle = "black";
         ctx.strokeRect(0, 0, w, h);
+
+        for (var i=0; i<snake.length; i++) {
+          paint_cell(snake[i].x, snake[i].y);
+        }
+        paint_cell(food.x, food.y);
+      }
+
+      function paint_cell(x,y) {
+        ctx.fillStyle = "black";
+        ctx.fillRect(x*cw, y*cw, cw, cw);
+        ctx.strokeStyle = "white";
+        ctx.strokeRect(x*cw, y*cw, cw, cw);
       }
     </script>
   </body>
