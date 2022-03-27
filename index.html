@@ -19,6 +19,33 @@
 
       ctx.strokeStyle = "black";
       ctx.strokeRect(0, 0, w, h);
+
+      function init() {
+        // Create a snake object
+        create_snake();
+        // Create a food object
+        create_food();
+        // Start the game
+      }
+      init();
+
+      function create_snake() {
+        var snake_length = 5;
+        snake = [];
+        for (var i = snake_length - 1; i >= 0; i--) {
+          snake.push({
+            x: i,
+            y: 0
+          });
+        }
+      }
+
+      function create_food() {
+        food = {
+          x: Math.round(Math.random() * (w - cw) / cw),
+          y: Math.round(Math.random() * (h - cw) / cw)
+        };
+      }
     </script>
   </body>
 </html>
