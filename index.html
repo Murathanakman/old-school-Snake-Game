@@ -17,6 +17,10 @@
       var w = canvas.width;
       var h = canvas.height;
 
+      var cw = 10;
+      var food;
+      var snake;
+
       ctx.strokeStyle = "black";
       ctx.strokeRect(0, 0, w, h);
 
@@ -26,6 +30,8 @@
         // Create a food object
         create_food();
         // Start the game
+        if (typeof game_loop != "undefined") clearInterval(game_loop);
+        game_loop = setInterval(paint, 80);
       }
       init();
 
@@ -45,6 +51,13 @@
           x: Math.round(Math.random() * (w - cw) / cw),
           y: Math.round(Math.random() * (h - cw) / cw)
         };
+      }
+
+      function paintCanvas() {
+        ctx.fillStyle = "white";
+        ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = "black";
+        ctx.strokeRect(0, 0, w, h);
       }
     </script>
   </body>
