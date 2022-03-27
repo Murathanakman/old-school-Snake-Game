@@ -59,6 +59,22 @@
         ctx.strokeStyle = "black";
         ctx.strokeRect(0, 0, w, h);
 
+        var hx = snake[0].x;
+        var hy = snake[0].y;
+
+        hx++;
+
+        if (hx == w / cw || hx == -1 || hy == -1 || hy == h /cw){
+          init();
+        }
+
+        snake.pop();
+        var new_head = {
+          x: hx,
+          y: hy
+        };
+        snake.unshift(new_head);
+
         for (var i=0; i<snake.length; i++) {
           paint_cell(snake[i].x, snake[i].y);
         }
