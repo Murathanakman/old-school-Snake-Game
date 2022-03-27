@@ -11,5 +11,14 @@
       <!-- Decleare width and height here. Not in CSS. To avoid possible errors -->
       Your browser does not support the HTML5 canvas tag.
     </canvas>
+    <script src="snake.js">
+      var canvas = document.getElementById("gameCanvas");
+      var ctx = canvas.getContext("2d");
+      var w = canvas.width;
+      var h = canvas.height;
+
+      ctx.strokeStyle = "black";
+      ctx.strokeRect(0, 0, w, h);
+    </script>
   </body>
 </html>
