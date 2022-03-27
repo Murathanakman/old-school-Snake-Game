@@ -21,6 +21,7 @@
       var food;
       var snake;
       var direction;
+      var score;
 
       ctx.strokeStyle = "black";
       ctx.strokeRect(0, 0, w, h);
@@ -31,6 +32,7 @@
         // Create a food object
         create_food();
         // Start the game
+        score = 0;
         direction = "right"; // Initial direction
         windows.onkeydown = keyEvent; // Start listening for key presses
         if (typeof game_loop != "undefined") clearInterval(game_loop);
@@ -72,12 +74,13 @@
 
         hx++;
 
-        if (hx == w / cw || hx == -1 || hy == -1 || hy == h /cw){
+        if (hx == w / cw || hx == -1 || hy == -1 || hy == h /cw || check_collision(hx, hy, snake)) {
           init();
           return;
         }
 
         if (hx == food.x && hy = food.y) {
+          score++;
           create_food();
         }
         else {
@@ -94,6 +97,10 @@
           paint_cell(snake[i].x, snake[i].y);
         }
         paint_cell(food.x, food.y);
+
+        ctx.fillStyle = "black";
+        ctx.font = "20px Arial";
+        ctx.fillText("Score: " + score, 10, h - 10);
       }
 
       function paint_cell(x,y) {
@@ -101,6 +108,14 @@
         ctx.fillRect(x*cw, y*cw, cw, cw);
         ctx.strokeStyle = "white";
         ctx.strokeRect(x*cw, y*cw, cw, cw);
+      }
+
+      function check_collision(x,y,array) {
+        for (var i = 0; i < array.length; i++) {
+          if (array[i].x == x && array[i].y == y)
+            return true;
+        }
+        return false;
       }
 
       function keyEvent(e) {
